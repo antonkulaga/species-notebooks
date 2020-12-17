@@ -2,6 +2,34 @@
 
 Polynote notebooks for Cross-Species transcriptomics project.
 The repository contains part of preprocessing scripts for Cross-Species database and "Machine learning analysis of longevity-associated gene expression landscapes in mammals" paper.
+This repository needed if you want to requantify the data or add additional samples.
+To reproduce the analysis of the paper with already quantified data [yspecies](https://github.com/antonkulaga/yspecies) repository should be used instead.
+
+## Role of this repository in cross-species machine learning pipeline ##
+
+![Cross-species Machine learning pipeline](/data/images/pipeline.png?raw=true "Machine learning pipeline in the paper")
+
+On this figure we illustrate the core elements of the Cross-Species ML pipeline:
+
+### RNA-quantification ###
+For downloading and preparing the indexes of reference genomes and transcriptomes current [species-notebooks](https://github.com/antonkulaga/species-notebooks) repository can be used.
+
+For RNA-Seq processing of samples [quantification](https://github.com/antonkulaga/rna-seq/tree/master/pipelines/quantification) pipeline can be used.
+
+For uploading the data to GRAPHDB database current [species-notebooks](https://github.com/antonkulaga/species-notebooks) repository can be used.
+
+### LightGBM+SHAP stages I, II, III models and ranked results###
+
+To reproduce most of the models [yspecies](https://github.com/antonkulaga/yspecies) repository can be used (see its documentation)
+
+### Other models ###
+
+Linear models are implemented in [cross-species-linear-models](https://github.com/ursueugen/cross-species-linear-models) repository
+Bayesian networks analysis and multilevel Bayesian linear modelling are available at: [bayesian_networks_and_bayesian_linear_modeling](https://github.com/rodguinea/bayesian_networks_and_bayesian_linear_modeling) repository
+
+If you just need results you can pull them by [DVC](https://dvc.org) in [yspecies](https://github.com/antonkulaga/yspecies) repository
+
+# Structure of  thespecies-notebooks repository #
 
 The notebooks are divided into 3 folders:
 * ensembl
@@ -39,5 +67,3 @@ In the project we also assume the following directory structure
 * /data/indexes/salmon/<version>/ensembl_<ensembl_release>/ - for indexes folders
 * /data/databases/graphdb - for GraphDB
 * /data/samples/species - for cross-species samples
-
-NOTE: for reproducing results for longevity-associated gene expression landscapes in mammals paper it is enough to use https://github.com/antonkulaga/yspecies as it contains DVC-controled data. This repository is needed only if you want to requantify raw data with the latest version of ensembl or setup a graph database with cross-species genes expressions
